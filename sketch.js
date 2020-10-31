@@ -14,9 +14,6 @@ let cont = 0;
 
 function setup() {
   createCanvas(400, 400);
-  button = createButton("bezier");
-  button.position(10,420);
-  button.mouseClicked(Bezier);
 }
 
 function draw() {
@@ -69,16 +66,19 @@ function draw() {
 }
 
 function mousePressed(){
-  if(dentroBtn){
-    console.log(insideBtn);
-  }
-  point(mouseX,mouseY);
-  append(arrayPontosClicados, mouseX);
-  append(arrayPontosClicados, mouseY);
-  if(arrayPontosClicados.length >= 4){
+  // condicao para desenhar apenas dentro do canvas
+  if(mouseY >= 0 && mouseY <= 400 && mouseX >= 0 && mouseX <= 400){
+    point(mouseX,mouseY);
+    append(arrayPontosClicados, mouseX);
+    append(arrayPontosClicados, mouseY);
+    if(arrayPontosClicados.length >= 4){
       line(arrayPontosClicados[cont],arrayPontosClicados[cont+1],arrayPontosClicados[cont+2],arrayPontosClicados[cont+3]); 
       cont = cont + 2;
+    }
+  } else {
+    
   }
+  
 }
 
 function pontosCurva(){
@@ -115,9 +115,6 @@ function Bezier(){
 }
 
 function dentroBtn(){
-  if(mouseX > 400 && mouseY > 400 ){
-    insideBtn =  false;
-  }
-  insideBtn = true;
+  
    
 }
